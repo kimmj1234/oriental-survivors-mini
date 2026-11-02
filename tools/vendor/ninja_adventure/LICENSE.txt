@@ -1,0 +1,3 @@
+Ninja Adventure - Asset Pack, by pixel-boy (https://pixel-boy.itch.io/ninja-adventure-asset-pack)
+License: Creative Commons Zero v1.0 Universal (CC0). Attribution is not required but appreciated.
+This folder keeps only the files used by tools/build_assets.py.

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>뱀파이어 서바이벌 미니</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="stage">
+  <div id="wrap">
+    <canvas id="cv" aria-label="게임 화면"></canvas>
+    <div id="ov"></div>
+  </div>
+</main>
+
+<aside id="side">
+  <h1>뱀파이어 서바이벌 미니</h1>
+
+  <section>
+    <h2>현재 상태</h2>
+    <dl class="kv">
+      <dt>상태</dt><dd id="stState">시작 전</dd>
+      <dt>난이도 값</dt><dd id="stDiff">1.0</dd>
+      <dt>시간</dt><dd id="stTime">0:00</dd>
+      <dt>체력</dt><dd id="stHp">100 / 100</dd>
+      <dt>레벨</dt><dd id="stLv">1</dd>
+      <dt>처치</dt><dd id="stKills">0</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>규칙</h2>
+    <ul>
+      <li>공격은 자동입니다. 이동만 합니다.</li>
+      <li>체력이 0이 되면 <b>실패</b>.</li>
+      <li>5:00에 나오는 보스를 처치하면 <b>성공</b>.</li>
+      <li>경험치 구슬을 모아 레벨업 → 카드 1장 선택.</li>
+      <li>무기 6종·능력 6종, 각 최대 Lv5.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>조작</h2>
+    <ul>
+      <li><kbd>W A S D</kbd> / 방향키: 이동</li>
+      <li><kbd>P</kbd> / <kbd>Esc</kbd>: 일시정지·재개</li>
+      <li><kbd>R</kbd>: 다시 시작</li>
+      <li><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd>: 레벨업 카드 선택</li>
+      <li><kbd>B</kbd>: 검사용 자동 조작</li>
+    </ul>
+    <div class="row">
+      <button id="btnPause" type="button">일시정지/재개</button>
+      <button id="btnRestart" type="button">다시 시작</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>설정</h2>
+    <label class="row">난이도(적 배율)
+      <select id="selDiff">
+        <option value="easy">쉬움 0.7</option>
+        <option value="normal" selected>보통 1.0</option>
+        <option value="hard">어려움 1.5</option>
+      </select>
+    </label>
+    <label class="row"><input type="checkbox" id="chkMute"> 음소거</label>
+    <label class="row"><input type="checkbox" id="chkReduce"> 움직임 줄이기</label>
+    <p class="note">난이도는 판이 끝났거나 시작 전에만 바꿀 수 있고, 다음 판부터 적용됩니다.</p>
+  </section>
+
+  <section>
+    <h2>입력 확인</h2>
+    <dl class="kv">
+      <dt>키 입력 수신</dt><dd id="ioRx">0</dd>
+      <dt>상태 변화 반영</dt><dd id="ioOk">0</dd>
+      <dt>자동 조작</dt><dd id="ioBot">꺼짐</dd>
+    </dl>
+    <p class="note">P·Esc·R·1·2·3·Enter·Space·B 입력만 셉니다. 해당 상황에서 효과가 없는 입력은 수신만 늘어납니다.</p>
+  </section>
+
+  <section>
+    <h2>기록</h2>
+    <div id="recBest" class="note">최고 기록 없음</div>
+    <ol id="recList"></ol>
+    <div class="row">
+      <button id="btnCsv" type="button">기록 CSV 저장</button>
+      <button id="btnClear" type="button">기록 삭제</button>
+    </div>
+  </section>
+
+  <details>
+    <summary>짧은 확인 방법</summary>
+    <ol class="note">
+      <li><b>어디로 가나요</b>: 이 페이지 하나만 엽니다. 로그인 없음.</li>
+      <li><b>3단계</b>: Enter로 시작 → P를 10번 빠르게 누름 → R로 재시작.</li>
+      <li><b>통과 시 보이는 것</b>: 입력 수신 10, 반영 10, 일시정지가 10번 토글되어 원래 상태, 재시작 시 시간 0:00·체력 100.</li>
+      <li><b>안 될 때 보이는 것</b>: 수신과 반영 숫자가 다르거나, 일시정지 중 시간이 늘어납니다.</li>
+    </ol>
+  </details>
+</aside>
+
+<script src="assets/sprites.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
